@@ -64,7 +64,7 @@
                                     <i class="mdi mdi-account"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{ asset('focusAdmin') }}app-profile.html" class="dropdown-item">
+                                    <a href="{{ route('user.show', auth()->id()) }}" class="dropdown-item">
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
                                     </a>
@@ -141,7 +141,8 @@
                             <li><a href="{{ route('user.index') }}">Users List</a></li>
                         </ul>
                     </li>
-                    <li><a href="widget-basic.html" aria-expanded="false"><i class="fas fa-sign-out-alt"></i><span
+                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" aria-expanded="false"><i class="fas fa-sign-out-alt"></i><span
                                 class="nav-text">Logout</span></a></li>
                 </ul>
                 @endif

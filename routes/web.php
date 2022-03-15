@@ -6,9 +6,7 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
-    Route::get('/home', function(){
-        return redirect('/');
-    });
+    Route::redirect('/home', '/');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

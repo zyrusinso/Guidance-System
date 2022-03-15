@@ -56,7 +56,7 @@ class ComplainController extends Controller
             Log::critical($ex);
             return response()->json([
                 'success' => false,
-                'message' => 'System Failed! please contact the admin to fix this problem!', 
+                'message' => 'System Failed! please contact the developer to fix this problem!', 
             ], 500);
         }
 

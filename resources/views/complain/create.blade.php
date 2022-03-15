@@ -164,10 +164,11 @@ $(function() {
     $('#complainForm').on('submit', function(e) {
 
         var $form = $(this);
-
+        
         e.preventDefault();
 
         if (!$(".is-invalid")[0]) {
+            alert($form.serialize());
             $.ajax({
                 url: "{{ route('complain.store') }}",
                 dataType: "json",
