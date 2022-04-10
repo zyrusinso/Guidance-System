@@ -30,11 +30,11 @@
                                         <div class="form-group">
                                             <label><strong>Email</strong></label>
                                             <input type="email" name="email" class="form-control"
-                                                placeholder="ex: hello@example.com">
+                                                placeholder="ex: hello@example.com" value="{{ old('email') }}">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>Password</strong></label>
-                                            <input type="password" name="password" class="form-control" value="{{ old('email') }}">
+                                            <input type="password" name="password" class="form-control" value="">
                                         </div>
 
                                         <div class="form-group">

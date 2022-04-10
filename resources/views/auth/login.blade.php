@@ -65,7 +65,6 @@
     <!-- Required vendors -->
     <script src="{{ asset('focusAdmin/vendor/global/global.min.js') }}"></script>
     <script src="{{ asset('focusAdmin/js/quixnav-init.js') }}"></script>
-    <script src="{{ asset('focusAdmin/js/custom.min.js') }}"></script>
     <script src="{{ asset('focusAdmin/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
 
 @if (count($errors) > 0)

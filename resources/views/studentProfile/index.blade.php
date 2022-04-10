@@ -22,10 +22,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $incr = 1?>
                             @foreach ($students as $data)
                                 <tr>
-                                    <th>{{ $incr }}</th>
+                                    <th>{{ $loop->increment }}</th>
                                     <td>{{ $data->stud_num }}</td>
                                     <td>{{ $data->fname }} {{ $data->lname }}</td>
                                     <td>{{ $data->course }}</td>
@@ -35,7 +34,6 @@
                                         <a href="{{ route('studentProfile.show', $data->id) }}" class="badge badge-outline-primary">Info</a>
                                     </td>
                                 </tr>
-                                <?php $incr++?>
                             @endforeach
                         </tbody>
                     </table>
