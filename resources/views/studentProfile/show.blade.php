@@ -126,35 +126,18 @@
                                                 <th>#</th>
                                                 <th>Offense</th>
                                                 <th>Date</th>
-                                                <th>Action</th>
+                                                <!-- <th>Action</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th>1</th>
-                                                <td><span class="badge badge-success">1st</span></td>
-                                                <td>January 22</td>
-                                                <td>
-                                                    <a href="#" class="badge badge-outline-primary" data-toggle="modal"
-                                                        data-target=".bd-example-modal-lg">Info</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>2</th>
-                                                <td><span class="badge badge-primary">2nd</span></td>
-                                                <td>January 30</td>
-                                                <td>
-                                                    <a href="#" class="badge badge-outline-primary">Info</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>3</th>
-                                                <td><span class="badge badge-danger">3rd</span></td>
-                                                <td>January 25</td>
-                                                <td>
-                                                    <a href="#" class="badge badge-outline-primary">Info</a>
-                                                </td>
-                                            </tr>
+                                            <?php $increment = 0; ?>
+                                            @foreach ($offenseHistories as $item)
+                                                <tr>
+                                                    <th>{{ ++$increment }}</th>
+                                                    <td><span class="badge {{ $offenseBagde[$increment] }}">{{ $increment }}</span></td>
+                                                    <td>January 22</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

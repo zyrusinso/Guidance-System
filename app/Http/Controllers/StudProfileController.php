@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\StudProfile;
+use App\Models\Complain;
 use Illuminate\Http\Request;
 
 class StudProfileController extends Controller
@@ -10,7 +11,7 @@ class StudProfileController extends Controller
     public function index()
     {
         $students = StudProfile::all();
-        
+
         return view('studentProfile.index', compact('students'));
     }
     
@@ -58,7 +59,15 @@ class StudProfileController extends Controller
     public function show(StudProfile $StudProfile, $id)
     {
         $student = StudProfile::where('id', $id)->first();
-        return view('studentProfile.show', compact('student'));
+        $offenseHistories = Complain::where('stud_num', $student->stud_num)->latest()->get();
+
+        $offenseBagde = [
+            '1' => 'badge-success',
+            '2' => 'badge-warning',
+            '3' => 'badge-danger'
+        ];
+
+        return view('studentProfile.show', compact('student', 'offenseHistories', 'offenseBagde'));
     }
 
     /**

@@ -10,4 +10,5 @@ class StudProfile extends Model
     use HasFactory;
     
     protected $table = 'stud_profile';
+    protected $guarded = [];
 }

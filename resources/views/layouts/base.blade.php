@@ -14,7 +14,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('focusAdmin/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('focusAdmin/fontawesome/all.min.css') }}">
+    @stack('styles')
     @livewireStyles
+    
 </head>
 
 <body>
@@ -31,7 +33,7 @@
             <a href="{{ route('/') }}" class="brand-logo">
                 <img class="logo-abbr" src="{{ asset('images/logo.png') }}" alt="">
                 <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt="">
-                <img class="brand-title" src="{{ asset('images/logo-text.png') }}" alt="">
+                <h4 class="brand-title text-white text-center">GUIDANCE AND GRIEVANCE</h4>
             </a>
 
             <div class="nav-control">
@@ -92,8 +94,6 @@
 
         <div class="quixnav">
             <div class="quixnav-scroll">
-
-
                 @if(auth()->user()->is_admin != 1)
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>
@@ -153,17 +153,21 @@
         <div class="content-body">
             <!-- row -->
             <div class="container-fluid">
-                @yield('content')
+                {{ $slot }}
             </div>
         </div>
     </div>
 
     <!-- Required vendors -->
-    <script src="{{ asset('focusAdmin/vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('focusAdmin/js/quixnav-init.js') }}"></script>
-    <script src="{{ asset('focusAdmin/js/custom.min.js') }}"></script>
-    <script src="{{ asset('focusAdmin/vendor/jquery/jquery.min.js') }}"></script>
+    @if (!request()->routeIs('complain-report'))
+        <script src="{{ asset('focusAdmin/vendor/global/global.min.js') }}"></script>
+        <script src="{{ asset('focusAdmin/js/quixnav-init.js') }}"></script>
+        <script src="{{ asset('focusAdmin/js/custom.min.js') }}"></script>
+        <script src="{{ asset('focusAdmin/vendor/jquery/jquery.min.js') }}"></script> 
+    @endif
+    
     @yield('script')
+    @stack('scripts')
 
     @livewireScripts
 </body>

@@ -24,11 +24,11 @@
                                     </div>
                                 </div> -->
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="stud_name">Teacher Full Name
+                                    <label class="col-lg-4 col-form-label" for="teacher_name">Teacher Full Name
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="stud_name" name="stud_name"
+                                        <input type="text" class="form-control" id="teacher_name" name="teacher_name"
                                             placeholder="e.g Juan Dela Cruz">
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
 <script>
 jQuery(".form-valide").validate({
     rules: {
-        "stud_num": {
+        "teacher_Name": {
             required: !0,
             digits: !0
         },
@@ -90,9 +90,8 @@ jQuery(".form-valide").validate({
         },
     },
     messages: {
-        "stud_num": {
-            required: "Please enter a Student Number",
-            digits: "Please enter only digits!",
+        "teacher_name": {
+            required: "Please enter a Teacher Name",
         },
         "stud_name": {
             required: "Please enter a Student Name",
@@ -131,7 +130,7 @@ $(function() {
 
         if (!$(".is-invalid")[0]) {
             $.ajax({
-                url: "{{ route('complain.store') }}",
+                url: "{{ route('teacher.store') }}",
                 dataType: "json",
                 type: "POST",
                 data: $form.serialize(),

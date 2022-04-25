@@ -33,7 +33,7 @@
                         </div>
                         <div class="stat-content d-inline-block">
                             <div class="stat-text">Complains</div>
-                            <div class="stat-digit">1,012</div>
+                            <div class="stat-digit">{{ count($complains) ?? 0 }}</div>
                         </div>
                     </div>
                 </div>
@@ -45,8 +45,8 @@
                             <i class="ti-user text-primary border-primary"></i>
                         </div>
                         <div class="stat-content d-inline-block">
-                            <div class="stat-text">User</div>
-                            <div class="stat-digit">961</div>
+                            <div class="stat-text">Users</div>
+                            <div class="stat-digit">{{ count($users) ?? 0 }}</div>
                         </div>
                     </div>
                 </div>
@@ -55,11 +55,11 @@
                 <div class="card">
                     <div class="stat-widget-one card-body">
                         <div class="stat-icon d-inline-block">
-                            <i class="ti-layout-grid2 text-pink border-pink"></i>
+                            <i class="ti-user text-pink border-pink"></i>
                         </div>
                         <div class="stat-content d-inline-block">
-                            <div class="stat-text">Projects</div>
-                            <div class="stat-digit">770</div>
+                            <div class="stat-text">Teachers</div>
+                            <div class="stat-digit">{{ count($teachers) ?? 0 }}</div>
                         </div>
                     </div>
                 </div>
@@ -68,11 +68,11 @@
                 <div class="card">
                     <div class="stat-widget-one card-body">
                         <div class="stat-icon d-inline-block">
-                            <i class="ti-link text-danger border-danger"></i>
+                            <i class="ti-user text-danger border-danger"></i>
                         </div>
                         <div class="stat-content d-inline-block">
-                            <div class="stat-text">Referral</div>
-                            <div class="stat-digit">2,781</div>
+                            <div class="stat-text">Students</div>
+                            <div class="stat-digit">{{ count($students) ?? 0 }}</div>
                         </div>
                     </div>
                 </div>

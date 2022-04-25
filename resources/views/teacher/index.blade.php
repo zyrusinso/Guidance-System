@@ -14,9 +14,8 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Student Number</th>
-                                <th>Student Full Name</th>
-                                <th>Offense</th>
+                                <th>Teacher Name</th>
+                                <th>Offense Title</th>
                                 <th>Date</th>
                                 <th>Action</th>
                             </tr>
@@ -26,8 +25,7 @@
                             @foreach ($teachers as $data)
                                 <tr>
                                     <th>{{ $incr }}</th>
-                                    <td>{{ $data->stud_num }}</td>
-                                    <td>{{ $data->stud_name }}</td>
+                                    <td>{{ $data->teacher_name }}</td>
                                     <td>{{ $data->offense_title }}</td>
                                     <td>{{ Carbon\Carbon::parse($data->created_at)->format('F j')}}</td>
                                     <td>

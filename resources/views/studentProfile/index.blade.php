@@ -24,7 +24,7 @@
                         <tbody>
                             @foreach ($students as $data)
                                 <tr>
-                                    <th>{{ $loop->increment }}</th>
+                                    <th width="1%">{{ $data->id }}</th>
                                     <td>{{ $data->stud_num }}</td>
                                     <td>{{ $data->fname }} {{ $data->lname }}</td>
                                     <td>{{ $data->course }}</td>

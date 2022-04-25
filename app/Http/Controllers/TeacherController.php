@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Teacher;
+use App\Models\Complain;
+use App\Models\TeacherComplain;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -14,7 +16,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::all();
+        $teachers = TeacherComplain::all();
+
         return view('teacher.index', compact('teachers'));
     }
 
@@ -36,7 +39,25 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'teacher_name' => 'required',
+            'offense_title' => 'required',
+            'offense_description' => 'required'
+        ]);
+
+        if($validated->fails()){
+            return response()->json(['success' => false, 'data' => $validated->errors()]);
+        }
+
+        TeacherComplain::create([
+            'teacher_name' => $request->teacher_name,
+            'offense_title' => $request->offense_title,
+            'offense_description' => $request->offense_description
+        ]);
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     /**
