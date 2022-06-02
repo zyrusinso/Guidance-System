@@ -138,7 +138,7 @@ jQuery(".form-valide").validate({
     },
 });
 </script>
-
+ 
 <script src="{{ asset('focusAdmin/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
 <script>
 $(function() {
@@ -156,8 +156,6 @@ $(function() {
                 type: "POST",
                 data: $form.serialize(),
                 success: function(data) {
-                alert("Okay naman")
-                    
                     if (data.success == true) {
                         Swal.fire(
                             'Success!',

@@ -103,12 +103,12 @@
                             {{ $student->address }}
                             </div>
                         </div>
-                        <hr>
+                        <!-- <hr>
                         <div class="row">
                             <div class="col-sm-12">
-                                <a class="btn btn-info " target="__blank" href="#">Edit</a>
+                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="editProfileModal">Edit</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -126,7 +126,7 @@
                                                 <th>#</th>
                                                 <th>Offense</th>
                                                 <th>Date</th>
-                                                <!-- <th>Action</th> -->
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -135,7 +135,11 @@
                                                 <tr>
                                                     <th>{{ ++$increment }}</th>
                                                     <td><span class="badge {{ $offenseBagde[$increment] }}">{{ $increment }}</span></td>
-                                                    <td>January 22</td>
+                                                    <td>{{ Carbon\Carbon::parse($item->created_at)->format("F j, Y, g:i a") }}</td>
+                                                    <td>
+                                                        <a href="#" class="badge badge-outline-primary" data-toggle="modal"
+                                                            data-target="#modalData{{ $item->id }}">Info</a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -148,24 +152,94 @@
             </div>
         </div>
 
-        <!-- Modal -->
-        <!-- Large modal -->
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <?php $increment = 0; ?>
+        @foreach ($offenseHistories as $item)
+        <div class="modal fade bd-example-modal-lg" id="modalData{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
+                        <h5 class="modal-title">Teacher Complain Information</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">Modal body text goes here.</div>
+                    <div class="modal-body">
+                        <div class="tab-content">
+                            <div id="userInfo" class="tab-pane fade active show">
+                                <div class="pt-3">
+                                    <div class="profile-personal-info">
+                                        <div class="row mb-4">
+                                            <div class="col-3">
+                                                <h5 class="f-w-500">Offense Attempt<span class="pull-right">:</span>
+                                                </h5>
+                                            </div>
+                                            <div class="">
+                                            <span class="badge {{ $offenseBagde[++$increment] }}">{{ $increment }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-3">
+                                                <h5 class="f-w-500">Student Number <span class="pull-right">:</span>
+                                                </h5>
+                                            </div>
+                                            <div class="">
+                                                <span>{{ $item->stud_num }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-3">
+                                                <h5 class="f-w-500">Student Name <span class="pull-right">:</span>
+                                                </h5>
+                                            </div>
+                                            <div class="">
+                                                <span>{{ $item->stud_name }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-3">
+                                                <h5 class="f-w-500">Offense Title<span class="pull-right">:</span>
+                                                </h5>
+                                            </div>
+                                            <div class="">
+                                                <span>{{ $item->offense_title }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-3">
+                                                <h5 class="f-w-500">Offense Description<span class="pull-right">:</span>
+                                                </h5>
+                                            </div>
+                                            <div class="">
+                                                <span>{{ $item->offense_desc }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-3">
+                                                <h5 class="f-w-500">Date<span class="pull-right">:</span>
+                                                </h5>
+                                            </div>
+                                            <div class="font-weight-bold">
+                                                <span>{{ \Carbon\Carbon::parse($item->created_at)->format("F j, Y, g:i a") }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
+        @endforeach
+
+        
+        <script>
+            function editEmit(){
+                window.Livewire.emit('editEmit');
+            }
+        </script>
 
     </div>
 </div>
@@ -177,6 +251,8 @@
 <script>
 $(document).ready(function() {
     $('#myTable').DataTable();
+
+    
 });
 </script>
 @endsection

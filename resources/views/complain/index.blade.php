@@ -32,13 +32,86 @@
                                     <td>{{ Carbon\Carbon::parse($data->created_at)->format('F j')}}</td>
                                     <td>
                                         <a href="#" class="badge badge-outline-primary" data-toggle="modal"
-                                            data-target=".bd-example-modal-lg">Info</a>
+                                            data-target="#modalData{{ $data->id }}">Info</a>
                                     </td>
                                 </tr>
                                 <?php $incr++; ?>
+                                
                             @endforeach
                         </tbody>
                     </table>
+
+                    @foreach ($complains as $item)
+                        <div class="modal fade bd-example-modal-lg" id="modalData{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Complain Information</h5>
+                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="tab-content">
+                                            <div id="userInfo" class="tab-pane fade active show">
+                                                <div class="pt-3">
+                                                    <div class="profile-personal-info">
+                                                        <div class="row mb-4">
+                                                            <div class="col-3">
+                                                                <h5 class="f-w-500">Student Number <span class="pull-right">:</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="">
+                                                                <span>{{ $item->stud_num }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <div class="col-3">
+                                                                <h5 class="f-w-500">Student Name <span class="pull-right">:</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="">
+                                                                <span>{{ $item->stud_name }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <div class="col-3">
+                                                                <h5 class="f-w-500">Offense Title<span class="pull-right">:</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="">
+                                                                <span>{{ $item->offense_title }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <div class="col-3">
+                                                                <h5 class="f-w-500">Offense Description<span class="pull-right">:</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="">
+                                                                <span>{{ $item->offense_desc }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <div class="col-3">
+                                                                <h5 class="f-w-500">Date<span class="pull-right">:</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="font-weight-bold">
+                                                                <span>{{ \Carbon\Carbon::parse($item->created_at)->format("F j, Y, g:i a") }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -46,22 +119,7 @@
 
     <!-- Modal -->
     <!-- Large modal -->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">Modal body text goes here.</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
 @endsection

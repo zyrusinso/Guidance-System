@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use DB;
+use Validator;
 
 class UserController extends Controller
 {
@@ -38,34 +39,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $data = [
+            'email' => $request->email,
+            'name' => $request->name,
+            'password' => Hash::make($request->password)
+        ];
+
+        if($request->input('is_admin') == 1){
+            User::Create([
+                'email' => $request->email,
+                'name' => $request->name,
+                'password' => Hash::make($request->password),
+                'is_admin' => 1
+            ]);
+
+            return response()->json(['success'=>true, 'message'=>'Successfully added']);
+        }
+
+        User::Create($data);
+        return response()->json(['success'=>true, 'message'=>'Successfully added']);
+
         try{
             DB::beginTransaction();
-            $data = $request->validate([
-                'email' => ['email', 'unique:users'],
-                'name' => ['required'],
-                'password' => ['required'],
-            ]);
-
-            if ($data->fails()) {
-                return response()->json(['success'=>false,'error'=>$data->errors()->all()]);
-            }
-
-            if($request->input('is_admin') == 1){
-                User::create([
-                    'email' => $data['email'],
-                    'name' => $data['name'],
-                    'is_admin' => $request->is_admin,
-                    'password' => $data['password'] 
-                ]);
-                return redirect(route('user.index'));
-            }
-
-            User::create([
-                'email' => $data['email'],
-                'name' => $data['name'],
-                'password' => $data['password'] 
-            ]);
-            return response()->json(['success'=>true, 'message'=>'Successfully added']);
+            
 
         } catch (Throwable $ex) {
 

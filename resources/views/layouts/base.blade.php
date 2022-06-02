@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{{ asset('focusAdmin/fontawesome/all.min.css') }}">
     @stack('styles')
     @livewireStyles
-    
 </head>
 
 <body>
@@ -33,7 +32,7 @@
             <a href="{{ route('/') }}" class="brand-logo">
                 <img class="logo-abbr" src="{{ asset('images/logo.png') }}" alt="">
                 <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt="">
-                <h4 class="brand-title text-white text-center">GUIDANCE AND GRIEVANCE</h4>
+                <h4 class="brand-title text-white text-center">GRIEVANCE AND DISCIPLINE</h4>
             </a>
 
             <div class="nav-control">
@@ -61,32 +60,6 @@
                             </div>
                         </div>
 
-                        <ul class="navbar-nav header-right">
-                            <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-account"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{ route('user.show', auth()->id()) }}" class="dropdown-item">
-                                        <i class="icon-user"></i>
-                                        <span class="ml-2">Profile </span>
-                                    </a>
-                                    <a href="{{ asset('focusAdmin') }}email-inbox.html" class="dropdown-item">
-                                        <i class="icon-envelope-open"></i>
-                                        <span class="ml-2">Inbox </span>
-                                    </a>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
-                                        class="dropdown-item">
-                                        <i class="icon-key"></i>
-                                        <span class="ml-2">Logout </span>
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </nav>
             </div>
@@ -94,14 +67,6 @@
 
         <div class="quixnav">
             <div class="quixnav-scroll">
-                @if(auth()->user()->is_admin != 1)
-                <ul class="metismenu" id="menu">
-                    <li class="nav-label first">Main Menu</li>
-
-                    <li><a href="{{ route('complain.create') }}"><i class="fas fa-plus"></i>Add Complains</a></li>
-
-                </ul>
-                @else
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>
                     <li><a href="{{ route('/') }}" aria-expanded="false"><i class="fas fa-home"></i><span
@@ -128,7 +93,7 @@
 
 
                     <li class="nav-label first">Report</li>
-                    <li><a href="widget-basic.html" aria-expanded="false"><i class="fas fa-poll-h"></i><span
+                    <li><a href="#" aria-expanded="false"><i class="fas fa-poll-h"></i><span
                                 class="nav-text">Report</span></a></li>
                     <li><a href="{{ route('complain-report') }}" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span
                                 class="nav-text">Complains Report</span></a></li>
@@ -142,11 +107,7 @@
                             <li><a href="{{ route('user.index') }}">Users List</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" aria-expanded="false"><i class="fas fa-sign-out-alt"></i><span
-                                class="nav-text">Logout</span></a></li>
                 </ul>
-                @endif
             </div>
         </div>
 
